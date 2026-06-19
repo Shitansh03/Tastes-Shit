@@ -2,7 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// Register
+
 exports.registerUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -38,7 +38,7 @@ exports.registerUser = async (req, res) => {
   }
 };
 
-// Login
+
 exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -79,7 +79,7 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-// Get Me
+
 exports.getMe = async (req, res) => {
   try {
     const user = await User.findById(req.user.id)
@@ -96,7 +96,7 @@ exports.getMe = async (req, res) => {
   }
 };
 
-// Update Profile
+
 exports.updateProfile = async (req, res) => {
   try {
     const { username, bio, avatar } = req.body;
@@ -113,7 +113,7 @@ exports.updateProfile = async (req, res) => {
   }
 };
 
-// Toggle Favorite
+
 exports.toggleFavorite = async (req, res) => {
   try {
     const { recipeId } = req.params;

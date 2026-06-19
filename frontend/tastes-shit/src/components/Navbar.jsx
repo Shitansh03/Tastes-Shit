@@ -8,7 +8,6 @@ const Navbar = ({ searchValue, onSearchChange }) => {
 
   return (
     <header className="h-16 border-b border-zinc-800/60 px-6 flex items-center justify-between bg-black/95 backdrop-blur-sm sticky top-0 z-50">
-      {/* Logo */}
       <Link to="/" className="flex items-center gap-2 shrink-0">
         <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="black">
@@ -19,9 +18,7 @@ const Navbar = ({ searchValue, onSearchChange }) => {
         <span className="text-base font-bold tracking-tight">Chef's Vault</span>
       </Link>
 
-      {/* Search + Actions */}
       <div className="flex items-center gap-3">
-        {/* Search Bar */}
         <div className="hidden md:flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-3 py-2 rounded-full w-52 hover:border-zinc-700 transition">
           <Search size={14} className="text-zinc-500 shrink-0" />
           <input
@@ -33,12 +30,10 @@ const Navbar = ({ searchValue, onSearchChange }) => {
           />
         </div>
 
-        {/* Dark Mode Toggle */}
         <button className="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 transition">
           <Moon size={16} />
         </button>
 
-        {/* Auth - Login button or Profile Avatar */}
         {user ? (
           <button
             onClick={() => navigate("/profile")}

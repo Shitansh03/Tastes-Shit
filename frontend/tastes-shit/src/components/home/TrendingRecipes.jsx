@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ChevronRight, Clock, Star, Heart } from "lucide-react";
+import { ChevronRight, Clock, Star, Heart, Flame } from "lucide-react";
 import { useRecipes } from "../../hooks/useRecipes";
 import { getOptimizedImageUrl, IMG_SIZES } from "../../utils/cloudinary";
 
@@ -11,7 +11,9 @@ const TrendingRecipes = () => {
   if (isLoading) {
     return (
       <section className="mt-10">
-        <h2 className="text-2xl font-bold mb-6">Trending Recipes 🔥</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+          Trending Recipes <Flame size={20} className="text-orange-500" />
+        </h2>
         <div className="flex gap-4 overflow-x-auto no-scrollbar pb-3">
           {[...Array(5)].map((_, i) => (
             <div key={i} className="shrink-0 w-48 h-56 rounded-2xl bg-zinc-900 animate-pulse" />
@@ -24,7 +26,9 @@ const TrendingRecipes = () => {
   return (
     <section className="mt-10">
       <div className="flex justify-between items-center mb-5">
-        <h2 className="text-2xl font-bold">Trending Recipes 🔥</h2>
+        <h2 className="text-2xl font-bold flex items-center gap-2">
+          Trending Recipes <Flame size={20} className="text-orange-500" />
+        </h2>
         <button
           onClick={() => navigate("/recipes")}
           className="text-yellow-500 flex items-center gap-1 hover:text-yellow-400 transition text-sm"

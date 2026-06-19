@@ -7,7 +7,6 @@ const HeroSection = () => {
 
   return (
     <section className="relative overflow-hidden rounded-3xl border border-zinc-800/60 bg-black min-h-[720px]">
-      {/* Hero Image - positioned right side, NO overlays/blur, show as-is */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img
           src={heroSectionImage}
@@ -16,13 +15,10 @@ const HeroSection = () => {
         />
       </div>
 
-      {/* Only a LEFT-side gradient so text is readable, right side stays fully clear */}
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-black via-black/75 to-transparent" />
 
-      {/* Content */}
       <div className="relative z-20 flex min-h-[720px] items-center px-14">
         <div className="max-w-[620px]">
-          {/* Heading */}
           <h1
             className="text-[96px] leading-[0.9] tracking-tight font-bold"
             style={{ fontFamily: "'DM Serif Display', serif" }}
@@ -34,12 +30,10 @@ const HeroSection = () => {
             <span className="text-yellow-500">Inspire</span>
           </h1>
 
-          {/* Subtitle */}
           <p className="mt-5 text-zinc-400 text-base md:text-lg max-w-sm leading-relaxed">
             Explore 100+ handpicked recipes from around the world.
           </p>
 
-          {/* CTA Buttons */}
           <div className="mt-8 flex flex-wrap gap-3">
             <button
               onClick={() => navigate("/recipes")}
@@ -58,7 +52,6 @@ const HeroSection = () => {
             </button>
           </div>
 
-          {/* Social Proof */}
           <div className="mt-8 flex items-center gap-3">
             <div className="flex -space-x-2">
               {[

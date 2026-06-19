@@ -22,14 +22,12 @@ const menuItems = [
 const Sidebar = () => {
   return (
     <aside className="w-[72px] h-screen border-r border-zinc-800/60 bg-[#080808] hidden md:flex flex-col items-center py-5 shrink-0 overflow-hidden">
-      {/* Logo Icon */}
       <div className="mb-6">
         <div className="w-10 h-10 bg-yellow-500 rounded-xl flex items-center justify-center shadow-lg shadow-yellow-500/20">
           <ChefHat size={22} className="text-black" />
         </div>
       </div>
 
-      {/* Nav Items */}
       <div className="flex flex-col gap-1 w-full px-2">
         {menuItems.map((item) => (
           <NavLink
@@ -52,7 +50,6 @@ const Sidebar = () => {
         ))}
       </div>
 
-      {/* Create Button at Bottom */}
       <div className="mt-auto px-2 w-full">
         <NavLink
           to="/create"

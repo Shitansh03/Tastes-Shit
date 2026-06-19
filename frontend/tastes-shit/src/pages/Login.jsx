@@ -15,8 +15,6 @@ const Login = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      // data contains { token, user } from our backend loginUser response
-      // Store token first, then set user from response directly
       login(data.token, data.user);
       toast.success("Welcome back!");
       navigate("/");
@@ -37,7 +35,6 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-black text-white flex">
-      {/* Left - Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
         <div className="w-full max-w-md">
           <Link to="/" className="flex items-center gap-2 mb-12">
@@ -118,7 +115,7 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Right - Visual */}
+
       <div className="hidden lg:block lg:w-1/2 relative overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=80"

@@ -27,7 +27,7 @@ const Categories = () => {
   const { data: categories = [], isLoading: categoriesLoading } = useCategories();
   const { data: allRecipes = [], isLoading: recipesLoading } = useRecipes();
 
-  // Build a map: categoryId → first recipe image
+
   const categoryFirstImageMap = useMemo(() => {
     const map = {};
     if (!allRecipes.length) return map;
@@ -58,7 +58,6 @@ const Categories = () => {
 
   return (
     <section className="mt-10 overflow-hidden">
-      {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold">Categories</h2>
         <button
@@ -70,7 +69,7 @@ const Categories = () => {
         </button>
       </div>
 
-      {/* Scroll Container */}
+
       <div className="w-full overflow-hidden">
         <div className="flex gap-4 overflow-x-auto no-scrollbar pb-3 scroll-smooth">
           {categories.map((category) => {
@@ -82,7 +81,6 @@ const Categories = () => {
                 className="shrink-0 w-60 bg-[#111111] border border-zinc-800 rounded-2xl p-4 hover:border-yellow-500 transition-all duration-300 cursor-pointer"
               >
                 <div className="flex items-center gap-3">
-                  {/* Circle image */}
                   <div className="shrink-0 h-14 w-14 rounded-full overflow-hidden border border-zinc-700">
                     {firstImage ? (
                       <img
@@ -103,7 +101,6 @@ const Categories = () => {
                     )}
                   </div>
 
-                  {/* Text */}
                   <div className="min-w-0">
                     <h3 className="font-semibold truncate text-sm">
                       {category.name}

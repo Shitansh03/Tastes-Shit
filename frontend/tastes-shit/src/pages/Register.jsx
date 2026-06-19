@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChefHat, Mail, Lock, Eye, EyeOff, User, ArrowRight } from "lucide-react";
+import { ChefHat, Mail, Lock, Eye, EyeOff, User, ArrowRight, PartyPopper } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser, loginUser } from "../api/authApi";
 import { useAuth } from "../components/auth/AuthContext";
@@ -14,21 +14,20 @@ const Register = () => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (formData) => {
-      // Step 1: Register the user
+
       await registerUser(formData);
-      // Step 2: Login to get token + user data
+
       const loginRes = await loginUser({
         email: formData.email,
         password: formData.password,
       });
-      // loginRes = { success, token, user: { _id, username, email, avatar, bio } }
       return loginRes;
     },
     onSuccess: (data) => {
-      // data.user comes directly from the login response
       login(data.token, data.user);
-      toast.success("Account created! Welcome to Chef's Vault 🎉");
-      navigate("/");
+      toast.success("Account created! Welcome to Chef's Vault", {
+        icon: <PartyPopper size={18} className="text-yellow-500" />,
+      }); navigate("/");
     },
     onError: (err) => {
       toast.error(err?.response?.data?.message || "Registration failed. Please try again.");
@@ -50,7 +49,6 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-black text-white flex">
-      {/* Left - Visual */}
       <div className="hidden lg:block lg:w-1/2 relative overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=900&q=80"
@@ -66,7 +64,6 @@ const Register = () => {
         </div>
       </div>
 
-      {/* Right - Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
         <div className="w-full max-w-md">
           <Link to="/" className="flex items-center gap-2 mb-12">

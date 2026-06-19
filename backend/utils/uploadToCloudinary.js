@@ -1,16 +1,3 @@
-/**
- * uploadToCloudinary.js
- *
- * Real SaaS pipeline — same as Instagram/Zomato/Airbnb:
- *
- * IMAGE: Buffer → Sharp (WebP, 1600px, q85) → Cloudinary
- * VIDEO: Buffer → ffmpeg (H.264, 720p, CRF28) → Cloudinary
- *
- * Usage:
- *   const result = await uploadToCloudinary(buffer, "recipes/images");           // image
- *   const result = await uploadToCloudinary(buffer, "recipes/videos", "video");  // video
- */
-
 const cloudinary  = require("../config/cloudinary");
 const streamifier = require("streamifier");
 const sharp       = require("sharp");
@@ -22,7 +9,6 @@ const path        = require("path");
 
 ffmpeg.setFfmpegPath(ffmpegPath);
 
-// ─── Image Compression (Sharp) ────────────────────────────────────────────────
 async function compressImage(inputBuffer) {
   return await sharp(inputBuffer)
     .resize({
@@ -33,7 +19,7 @@ async function compressImage(inputBuffer) {
     .toBuffer();
 }
 
-// ─── Video Compression (ffmpeg) ───────────────────────────────────────────────
+
 function compressVideo(inputBuffer) {
   return new Promise((resolve, reject) => {
     const tempIn  = path.join(os.tmpdir(), `cv_in_${Date.now()}.mp4`);
@@ -68,7 +54,7 @@ function compressVideo(inputBuffer) {
   });
 }
 
-// ─── Upload Buffer to Cloudinary ─────────────────────────────────────────────
+
 function streamUpload(buffer, options) {
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(options, (error, result) => {
@@ -79,13 +65,13 @@ function streamUpload(buffer, options) {
   });
 }
 
-// ─── Main Export ──────────────────────────────────────────────────────────────
+
 const uploadToCloudinary = async (fileBuffer, folder, type = "image") => {
   if (type === "video") {
     console.log("🎬 Compressing video with ffmpeg...");
     const compressedVideo = await compressVideo(fileBuffer);
     const saved = Math.round((1 - compressedVideo.length / fileBuffer.length) * 100);
-    console.log(`✅ Video: ${(fileBuffer.length/1024/1024).toFixed(1)}MB → ${(compressedVideo.length/1024/1024).toFixed(1)}MB (${saved}% smaller)`);
+    console.log(`Video: ${(fileBuffer.length/1024/1024).toFixed(1)}MB → ${(compressedVideo.length/1024/1024).toFixed(1)}MB (${saved}% smaller)`);
 
     return await streamUpload(compressedVideo, {
       folder,
@@ -95,7 +81,7 @@ const uploadToCloudinary = async (fileBuffer, folder, type = "image") => {
   } else {
     const compressedImage = await compressImage(fileBuffer);
     const saved = Math.round((1 - compressedImage.length / fileBuffer.length) * 100);
-    console.log(`🖼️  Image: ${Math.round(fileBuffer.length/1024)}KB → ${Math.round(compressedImage.length/1024)}KB (${saved}% smaller)`);
+    console.log(`Image: ${Math.round(fileBuffer.length/1024)}KB → ${Math.round(compressedImage.length/1024)}KB (${saved}% smaller)`);
 
     return await streamUpload(compressedImage, {
       folder,

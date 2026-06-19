@@ -2,7 +2,7 @@ const Category = require("../models/Category");
 const Recipe = require("../models/Recipe");
 const uploadToCloudinary = require("../utils/uploadToCloudinary");
 
-// Create Recipe
+
 exports.createRecipe = async (req, res) => {
   try {
     const {
@@ -21,7 +21,7 @@ exports.createRecipe = async (req, res) => {
       return res.status(400).json({ message: "Recipe image is required" });
     }
 
-    // IMAGE UPLOAD — auto compressed (Sharp → WebP)
+    // image upload auto compressed (Sharp → WebP)
     const imageResult = await uploadToCloudinary(
       req.files.image[0].buffer,
       "recipes/images"
@@ -29,13 +29,13 @@ exports.createRecipe = async (req, res) => {
     );
     const imageUrl = imageResult.secure_url;
 
-    // VIDEO UPLOAD — auto compressed (ffmpeg → H.264 MP4)
+    // video upload auto compressed (ffmpeg → H.264 MP4)
     let videoUrl = "";
     if (req.files?.video) {
       const videoResult = await uploadToCloudinary(
         req.files.video[0].buffer,
         "recipes/videos",
-        "video" // <-- important: tells utility to use ffmpeg pipeline
+        "video"
       );
       videoUrl = videoResult.secure_url;
     }
@@ -76,7 +76,7 @@ exports.createRecipe = async (req, res) => {
   }
 };
 
-// Get All Recipes
+
 exports.getRecipes = async (req, res) => {
   try {
     const { category, search, sort } = req.query;
@@ -113,7 +113,7 @@ exports.getRecipes = async (req, res) => {
   }
 };
 
-// Get Single Recipe
+
 exports.getRecipeById = async (req, res) => {
   try {
     const recipe = await Recipe.findById(req.params.id)
@@ -131,7 +131,7 @@ exports.getRecipeById = async (req, res) => {
   }
 };
 
-// Update Recipe
+
 exports.updateRecipe = async (req, res) => {
   try {
     const recipe = await Recipe.findById(req.params.id);
@@ -165,7 +165,7 @@ exports.updateRecipe = async (req, res) => {
   }
 };
 
-// Delete Recipe
+
 exports.deleteRecipe = async (req, res) => {
   try {
     const recipe = await Recipe.findById(req.params.id);
@@ -190,7 +190,7 @@ exports.deleteRecipe = async (req, res) => {
   }
 };
 
-// Add Review
+
 exports.addReview = async (req, res) => {
   try {
     const { rating, comment } = req.body;
@@ -221,7 +221,7 @@ exports.addReview = async (req, res) => {
   }
 };
 
-// Get My Recipes
+
 exports.getMyRecipes = async (req, res) => {
   try {
     const recipes = await Recipe.find({ createdBy: req.user.id })

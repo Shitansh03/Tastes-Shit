@@ -25,6 +25,7 @@ const RecipeCard = ({ recipe }) => {
           </div>
         )}
       </div>
+      
       <div className="p-4">
         <p className="text-xs text-zinc-500 mb-1">{recipe.category?.name || "General"}</p>
         <h3 className="font-semibold text-base leading-snug">{recipe.title}</h3>

@@ -111,7 +111,7 @@ const recipeSchema = new mongoose.Schema(
   }
 );
 
-// Auto-calculate averageRating when reviews change
+
 recipeSchema.methods.calculateAverageRating = function () {
   if (this.reviews.length === 0) {
     this.averageRating = 0;

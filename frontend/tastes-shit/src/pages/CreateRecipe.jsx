@@ -9,6 +9,10 @@ import {
   Video,
   Image as ImageIcon,
   CheckCircle2,
+  Check,
+  Clock,
+  ListChecks,
+  ChefHat,
 } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createRecipe } from "../api/recipeApi";
@@ -97,19 +101,17 @@ const CreateRecipe = () => {
       <div className="mb-8">
         <h1 className="text-2xl font-bold mb-6">Create Recipe</h1>
 
-        {/* Steps Bar */}
         <div className="flex items-center gap-2">
           {STEPS.map((s, i) => (
             <div key={s} className="flex items-center gap-2 flex-1 last:flex-none">
               <div className="flex flex-col items-center gap-1">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition ${
-                    i < step
-                      ? "bg-yellow-500 text-black"
-                      : i === step
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition ${i < step
+                    ? "bg-yellow-500 text-black"
+                    : i === step
                       ? "border-2 border-yellow-500 text-yellow-500"
                       : "border border-zinc-700 text-zinc-600"
-                  }`}
+                    }`}
                 >
                   {i < step ? <CheckCircle2 size={16} /> : i + 1}
                 </div>
@@ -125,9 +127,8 @@ const CreateRecipe = () => {
         </div>
       </div>
 
-      {/* Card */}
+
       <div className="bg-[#111111] border border-zinc-800 rounded-2xl p-6">
-        {/* Step 0 */}
         {step === 0 && (
           <div className="space-y-5">
             <h2 className="font-semibold text-lg">Recipe Details</h2>
@@ -188,15 +189,14 @@ const CreateRecipe = () => {
                       key={d}
                       type="button"
                       onClick={() => setForm({ ...form, difficulty: d })}
-                      className={`flex-1 py-3 rounded-xl text-sm font-medium transition ${
-                        form.difficulty === d
-                          ? d === "Easy"
-                            ? "bg-green-500/20 text-green-400 border border-green-500/50"
-                            : d === "Medium"
+                      className={`flex-1 py-3 rounded-xl text-sm font-medium transition ${form.difficulty === d
+                        ? d === "Easy"
+                          ? "bg-green-500/20 text-green-400 border border-green-500/50"
+                          : d === "Medium"
                             ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/50"
                             : "bg-red-500/20 text-red-400 border border-red-500/50"
-                          : "bg-zinc-900 text-zinc-500 border border-zinc-800"
-                      }`}
+                        : "bg-zinc-900 text-zinc-500 border border-zinc-800"
+                        }`}
                     >
                       {d}
                     </button>
@@ -207,7 +207,6 @@ const CreateRecipe = () => {
           </div>
         )}
 
-        {/* Step 1 */}
         {step === 1 && (
           <div className="space-y-5">
             <h2 className="font-semibold text-lg">Ingredients</h2>
@@ -244,7 +243,6 @@ const CreateRecipe = () => {
           </div>
         )}
 
-        {/* Step 2 */}
         {step === 2 && (
           <div className="space-y-5">
             <h2 className="font-semibold text-lg">Cooking Steps</h2>
@@ -286,7 +284,6 @@ const CreateRecipe = () => {
           </div>
         )}
 
-        {/* Step 3 */}
         {step === 3 && (
           <div className="space-y-5">
             <h2 className="font-semibold text-lg">Media</h2>
@@ -328,7 +325,9 @@ const CreateRecipe = () => {
                 className="border-2 border-dashed border-zinc-700 hover:border-yellow-500/50 rounded-2xl p-6 text-center cursor-pointer transition group"
               >
                 {form.video ? (
-                  <p className="text-sm text-green-400">✓ {form.video.name}</p>
+                  <p className="text-sm text-green-400 flex items-center justify-center gap-1.5">
+                    <Check size={14} /> {form.video.name}
+                  </p>
                 ) : (
                   <>
                     <Video size={28} className="text-zinc-600 mx-auto mb-2 group-hover:text-yellow-500/60 transition" />
@@ -340,7 +339,6 @@ const CreateRecipe = () => {
           </div>
         )}
 
-        {/* Step 4 */}
         {step === 4 && (
           <div className="space-y-5">
             <h2 className="font-semibold text-lg">Ready to Publish?</h2>
@@ -352,9 +350,15 @@ const CreateRecipe = () => {
                 <h3 className="font-semibold text-lg">{form.title}</h3>
                 <p className="text-zinc-500 text-sm mt-1">{form.description}</p>
                 <div className="flex gap-4 mt-3 text-xs text-zinc-500">
-                  <span>🕐 {form.cookingTime} min</span>
-                  <span>📋 {form.ingredients.filter(Boolean).length} ingredients</span>
-                  <span>👨‍🍳 {form.instructions.filter(Boolean).length} steps</span>
+                  <span className="flex items-center gap-1">
+                    <Clock size={12} /> {form.cookingTime} min
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <ListChecks size={12} /> {form.ingredients.filter(Boolean).length} ingredients
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <ChefHat size={12} /> {form.instructions.filter(Boolean).length} steps
+                  </span>
                 </div>
               </div>
             </div>
@@ -363,7 +367,6 @@ const CreateRecipe = () => {
         )}
       </div>
 
-      {/* Nav Buttons */}
       <div className="flex justify-between mt-6">
         <button
           type="button"

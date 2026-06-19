@@ -1,7 +1,7 @@
 const Category = require("../models/Category");
 const Recipe = require("../models/Recipe");
 
-// Get All Categories with recipe counts
+
 exports.getCategories = async (req, res) => {
   try {
     const categories = await Category.find().sort({ name: 1 });
@@ -23,7 +23,7 @@ exports.getCategories = async (req, res) => {
   }
 };
 
-// Create Category
+
 exports.createCategory = async (req, res) => {
   try {
     const { name, image, description } = req.body;
@@ -41,7 +41,7 @@ exports.createCategory = async (req, res) => {
   }
 };
 
-// Delete Category
+
 exports.deleteCategory = async (req, res) => {
   try {
     const category = await Category.findByIdAndDelete(req.params.id);

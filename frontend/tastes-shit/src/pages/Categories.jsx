@@ -51,7 +51,7 @@ const CategoryCard = ({ category, firstRecipeImage, onClick }) => {
       onClick={onClick}
       className="group flex items-center gap-4 bg-[#111111] border border-zinc-800 rounded-2xl p-5 cursor-pointer hover:border-yellow-500/60 transition-all duration-300 hover:bg-[#161616] hover:shadow-lg hover:shadow-yellow-500/5"
     >
-      {/* Circle Image */}
+
       <div className="shrink-0 w-[90px] h-[90px] rounded-full overflow-hidden border-2 border-zinc-700 group-hover:border-yellow-500/50 transition-all duration-300">
         {firstRecipeImage ? (
           <img
@@ -66,7 +66,7 @@ const CategoryCard = ({ category, firstRecipeImage, onClick }) => {
         )}
       </div>
 
-      {/* Info */}
+
       <div className="flex-1 min-w-0">
         <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-yellow-400 transition-colors duration-200">
           {category.name}
@@ -102,7 +102,6 @@ const Categories = () => {
   const { data: categories = [], isLoading: categoriesLoading } = useCategories();
   const { data: allRecipes = [], isLoading: recipesLoading } = useRecipes();
 
-  // Build a map: categoryId → first recipe image
   const categoryFirstImageMap = useMemo(() => {
     const map = {};
     if (!allRecipes.length) return map;
@@ -132,13 +131,11 @@ const Categories = () => {
 
   return (
     <div className="max-w-6xl mx-auto">
-      {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-white">Categories</h1>
         <p className="text-zinc-500 text-sm mt-1">Explore recipes by cuisine</p>
       </div>
 
-      {/* Search */}
       <div className="relative mb-8">
         <Search
           size={16}
@@ -153,7 +150,6 @@ const Categories = () => {
         />
       </div>
 
-      {/* Grid */}
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {[...Array(9)].map((_, i) => (

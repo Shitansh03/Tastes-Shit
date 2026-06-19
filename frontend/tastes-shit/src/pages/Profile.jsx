@@ -49,11 +49,9 @@ const Profile = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Profile Header */}
       <div className="bg-[#111111] border border-zinc-800 rounded-3xl p-8 mb-6 relative">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-5">
-            {/* Avatar */}
             <div className="relative">
               {user.avatar ? (
                 <img
@@ -69,7 +67,7 @@ const Profile = () => {
               <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-[#111111]" />
             </div>
 
-            {/* Info */}
+
             <div>
               <h1 className="text-2xl font-bold">{user.username}</h1>
               <p className="text-zinc-500 text-sm">@{user.username.toLowerCase()}</p>
@@ -79,7 +77,7 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* Actions */}
+
           <div className="flex items-center gap-2">
             <button className="flex items-center gap-2 border border-zinc-700 px-4 py-2 rounded-xl text-sm hover:border-yellow-500 transition">
               <Edit2 size={14} />
@@ -97,7 +95,6 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Stats */}
         <div className="grid grid-cols-4 gap-4 mt-8">
           {[
             { label: "Recipes", value: myRecipes.length },
@@ -113,7 +110,6 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* Tabs */}
       <div className="flex gap-1 bg-zinc-900 rounded-xl p-1 mb-6 w-fit">
         {profileTabs.map((tab) => (
           <button
@@ -130,7 +126,6 @@ const Profile = () => {
         ))}
       </div>
 
-      {/* Tab Content */}
       {activeTab === "Recipes" && (
         <div>
           {myRecipes.length === 0 ? (

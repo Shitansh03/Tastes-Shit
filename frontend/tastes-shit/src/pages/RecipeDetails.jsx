@@ -47,7 +47,6 @@ const RecipeDetails = () => {
       </button>
 
       <div className="grid lg:grid-cols-2 gap-8 mb-8">
-        {/* Image */}
         <div className="relative rounded-3xl overflow-hidden h-80 lg:h-auto">
           <img
             src={getOptimizedImageUrl(recipe.image, IMG_SIZES.hero)}
@@ -69,7 +68,7 @@ const RecipeDetails = () => {
           </div>
         </div>
 
-        {/* Info */}
+
         <div>
           <div className="flex items-center gap-2 mb-3">
             <span className="bg-yellow-500/20 text-yellow-500 text-xs font-semibold px-3 py-1 rounded-full">
@@ -146,7 +145,6 @@ const RecipeDetails = () => {
         </div>
       </div>
 
-      {/* Tabs */}
       <div className="flex gap-1 bg-zinc-900 rounded-xl p-1 mb-8 w-fit">
         {tabs.map((tab) => (
           <button

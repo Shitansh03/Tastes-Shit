@@ -63,7 +63,6 @@ const MyRecipes = () => {
 
   return (
     <div>
-      {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold">My Recipes</h1>
@@ -80,7 +79,7 @@ const MyRecipes = () => {
         </button>
       </div>
 
-      {/* Tabs */}
+
       <div className="flex gap-2 mb-6">
         {myRecipesTabs.map((tab) => {
           const count =
@@ -113,7 +112,7 @@ const MyRecipes = () => {
         })}
       </div>
 
-      {/* List */}
+
       {isLoading ? (
         <div className="space-y-3">
           {[...Array(4)].map((_, i) => (
@@ -138,7 +137,6 @@ const MyRecipes = () => {
               key={recipe._id}
               className="flex items-center gap-4 bg-[#111111] border border-zinc-800 rounded-2xl p-4 hover:border-zinc-700 transition relative"
             >
-              {/* Image */}
               <img
                 src={recipe.image}
                 alt={recipe.title}
@@ -146,7 +144,6 @@ const MyRecipes = () => {
                 onClick={() => navigate(`/recipes/${recipe._id}`)}
               />
 
-              {/* Info */}
               <div
                 className="flex-1 min-w-0 cursor-pointer"
                 onClick={() => navigate(`/recipes/${recipe._id}`)}
@@ -175,7 +172,6 @@ const MyRecipes = () => {
                 </div>
               </div>
 
-              {/* Menu */}
               <div className="relative">
                 <button
                   onClick={() =>

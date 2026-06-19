@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
  
 app.get("/", (req, res) => {
-  res.send("Chef's Vault API Running... 🍳");
+  res.send("Tastes-Shit API Running...");
 });
  
 const authRoutes = require("./routes/authRoutes");
@@ -25,7 +25,7 @@ app.use("/api/recipes", recipeRoutes);
 const categoryRoutes = require("./routes/categoryRoutes");
 app.use("/api/categories", categoryRoutes);
  
-// Global error handler
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: "Something went wrong!" });

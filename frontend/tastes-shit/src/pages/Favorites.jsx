@@ -17,7 +17,6 @@ import { useAuth } from "../components/auth/AuthContext";
 const filterTabs = ["All", "Recipes", "Videos", "Chefs"];
 const sortOptions = ["Recently Added", "Top Rated", "Quickest", "Oldest"];
 
-// Static collections for sidebar
 const COLLECTIONS = [
   {
     label: "Weeknight Dinners",
@@ -51,7 +50,7 @@ const COLLECTIONS = [
   },
 ];
 
-// Grid card exactly matching the design
+
 const RecipeGridCard = ({ recipe, isFavorited, onToggleFav, onNavigate }) => {
   const hasVideo = Boolean(recipe.video);
   const rating =
@@ -62,7 +61,6 @@ const RecipeGridCard = ({ recipe, isFavorited, onToggleFav, onNavigate }) => {
       onClick={() => onNavigate(recipe._id)}
       className="group relative rounded-2xl overflow-hidden cursor-pointer border border-zinc-800/50 bg-[#111111] hover:border-zinc-700 transition-all duration-300"
     >
-      {/* Image container */}
       <div className="relative overflow-hidden" style={{ aspectRatio: "1/1" }}>
         <img
           src={recipe.image}
@@ -70,10 +68,8 @@ const RecipeGridCard = ({ recipe, isFavorited, onToggleFav, onNavigate }) => {
           className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
         />
 
-        {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
-        {/* Video play icon */}
         {hasVideo && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-12 h-12 bg-black/60 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20">
@@ -82,7 +78,6 @@ const RecipeGridCard = ({ recipe, isFavorited, onToggleFav, onNavigate }) => {
           </div>
         )}
 
-        {/* Heart button - top right */}
         <button
           className="absolute top-3 right-3 w-9 h-9 bg-black/60 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/80 transition z-10"
           onClick={(e) => {
@@ -97,7 +92,6 @@ const RecipeGridCard = ({ recipe, isFavorited, onToggleFav, onNavigate }) => {
           />
         </button>
 
-        {/* Bottom title overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-4">
           <h3 className="font-bold text-base text-white leading-snug mb-2">
             {recipe.title}
@@ -118,10 +112,9 @@ const RecipeGridCard = ({ recipe, isFavorited, onToggleFav, onNavigate }) => {
   );
 };
 
-// Sidebar collection item matching design
+
 const CollectionItem = ({ collection }) => (
   <div className="flex items-center gap-3 group cursor-pointer hover:bg-zinc-800/40 rounded-xl p-1.5 -mx-1.5 transition">
-    {/* 2x2 image grid */}
     <div className="grid grid-cols-2 gap-0.5 w-16 h-12 rounded-lg overflow-hidden shrink-0">
       {collection.images.slice(0, 4).map((src, i) => (
         <img
@@ -154,7 +147,6 @@ const Favorites = () => {
 
   const { data: recipes = [], isLoading } = useRecipes();
 
-  // Show first 8 as "saved" recipes
   const shownRecipes = useMemo(() => {
     let list = [...recipes.slice(0, 8)];
     if (activeFilter === "Videos") list = list.filter((r) => r.video);
@@ -162,7 +154,7 @@ const Favorites = () => {
     return list;
   }, [recipes, activeFilter]);
 
-  // Recently added for sidebar (last 4)
+
   const recentlyAdded = useMemo(
     () => recipes.slice(0, 4),
     [recipes]
@@ -192,9 +184,7 @@ const Favorites = () => {
 
   return (
     <div className="flex gap-6 max-w-[1200px] mx-auto">
-      {/* ─── Main Content ─── */}
       <div className="flex-1 min-w-0">
-        {/* Header */}
         <div className="flex items-start justify-between mb-6">
           <div>
             <h1 className="text-4xl font-bold text-white flex items-center gap-3 mb-1">
@@ -206,16 +196,15 @@ const Favorites = () => {
             </p>
           </div>
 
-          {/* Golden heart / saved count decoration */}
+
           <div className="flex flex-col items-center justify-center bg-[#111111] border border-zinc-800 rounded-2xl px-6 py-3 shrink-0">
             <p className="text-3xl font-bold text-yellow-500">{savedCount || 36}</p>
             <p className="text-xs text-zinc-500 mt-0.5">Saved Items</p>
           </div>
         </div>
 
-        {/* Filters + Sort + View */}
+
         <div className="flex items-center justify-between mb-6">
-          {/* Filter tabs */}
           <div className="flex bg-[#111111] border border-zinc-800 rounded-2xl p-1 gap-1">
             {filterTabs.map((tab) => (
               <button
@@ -233,7 +222,6 @@ const Favorites = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Sort dropdown */}
             <div className="relative">
               <button
                 onClick={() => setShowSortMenu(!showSortMenu)}
@@ -267,7 +255,7 @@ const Favorites = () => {
               )}
             </div>
 
-            {/* View mode toggle */}
+
             <div className="flex bg-zinc-900 border border-zinc-800 rounded-xl p-1 gap-0.5">
               <button
                 onClick={() => setViewMode("grid")}
@@ -293,7 +281,7 @@ const Favorites = () => {
           </div>
         </div>
 
-        {/* Recipe Grid */}
+
         {isLoading ? (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[...Array(8)].map((_, i) => (
@@ -329,9 +317,7 @@ const Favorites = () => {
         )}
       </div>
 
-      {/* ─── Right Sidebar ─── */}
       <div className="w-[280px] shrink-0 space-y-6">
-        {/* Collections */}
         <div className="bg-[#111111] border border-zinc-800 rounded-2xl p-5">
           <div className="flex items-center justify-between mb-5">
             <h3 className="font-bold text-white text-base">Collections</h3>
@@ -346,14 +332,12 @@ const Favorites = () => {
             ))}
           </div>
 
-          {/* New Collection button */}
           <button className="w-full mt-4 flex items-center justify-center gap-2 border border-yellow-500/40 text-yellow-500 hover:bg-yellow-500/10 transition rounded-xl py-2.5 text-sm font-medium">
             <Plus size={16} />
             New Collection
           </button>
         </div>
 
-        {/* Recently Added */}
         <div className="bg-[#111111] border border-zinc-800 rounded-2xl p-5">
           <div className="flex items-center justify-between mb-5">
             <h3 className="font-bold text-white text-base">Recently Added</h3>

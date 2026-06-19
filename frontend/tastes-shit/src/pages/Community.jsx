@@ -21,7 +21,6 @@ const communityTabs = [
   { label: "Following", icon: Users },
 ];
 
-// Static top chefs for sidebar
 const TOP_CHEFS = [
   {
     rank: "01",
@@ -69,6 +68,7 @@ const TOP_CHEFS = [
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80",
   },
 ];
+
 
 const CHEF_META = [
   {
@@ -120,6 +120,7 @@ const getDifficultyColor = (difficulty) => {
   }
 };
 
+
 const Community = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("Trending");
@@ -139,14 +140,12 @@ const Community = () => {
     setBookmarkedPosts((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  // Trending This Week: take first 5 recipes for sidebar
+
   const trendingThisWeek = recipes.slice(0, 5);
 
   return (
     <div className="flex gap-6 max-w-[1200px] mx-auto">
-      {/* ─── Main Feed ─── */}
       <div className="flex-1 min-w-0">
-        {/* Header */}
         <div className="flex items-start justify-between mb-6">
           <div>
             <h1 className="text-4xl font-bold text-white flex items-center gap-3 mb-1">
@@ -161,7 +160,7 @@ const Community = () => {
             </p>
           </div>
 
-          {/* Active chefs avatars */}
+
           <div className="flex items-center gap-3 shrink-0">
             <div className="flex -space-x-2">
               {[
@@ -185,7 +184,7 @@ const Community = () => {
           </div>
         </div>
 
-        {/* Tabs + Sort */}
+
         <div className="flex items-center justify-between mb-6">
           <div className="flex gap-2">
             {communityTabs.map(({ label, icon: Icon }) => (
@@ -210,7 +209,7 @@ const Community = () => {
           </select>
         </div>
 
-        {/* Posts Feed */}
+
         {isLoading ? (
           <div className="space-y-5">
             {[...Array(3)].map((_, i) => (
@@ -253,7 +252,7 @@ const Community = () => {
                   key={recipe._id}
                   className="bg-[#111111] border border-zinc-800 rounded-2xl overflow-hidden hover:border-zinc-700 transition-all duration-200"
                 >
-                  {/* Featured banner */}
+
                   {isFeatured && (
                     <div className="bg-yellow-500/10 border-b border-yellow-500/20 px-5 py-2 flex items-center gap-2">
                       <Star
@@ -268,7 +267,6 @@ const Community = () => {
                   )}
 
                   <div className="flex gap-0">
-                    {/* Image - left side, large */}
                     <div
                       className="w-[340px] shrink-0 overflow-hidden cursor-pointer"
                       onClick={() => navigate(`/recipes/${recipe._id}`)}
@@ -281,9 +279,8 @@ const Community = () => {
                       />
                     </div>
 
-                    {/* Right content */}
+
                     <div className="flex-1 min-w-0 flex flex-col p-5">
-                      {/* Chef row */}
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-yellow-500/30 to-orange-500/20 border-2 border-yellow-500/30 flex items-center justify-center shrink-0">
@@ -324,7 +321,6 @@ const Community = () => {
                         </div>
                       </div>
 
-                      {/* Title */}
                       <h3
                         className="text-2xl font-bold text-white cursor-pointer hover:text-yellow-400 transition-colors mb-2"
                         onClick={() => navigate(`/recipes/${recipe._id}`)}
@@ -332,12 +328,10 @@ const Community = () => {
                         {recipe.title}
                       </h3>
 
-                      {/* Description */}
                       <p className="text-sm text-zinc-400 leading-relaxed line-clamp-2 mb-4">
                         {recipe.description}
                       </p>
 
-                      {/* Tags */}
                       <div className="flex items-center gap-2 mb-5 flex-wrap">
                         <span className="flex items-center gap-1.5 text-xs text-zinc-400 bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-full">
                           <Clock size={11} />
@@ -357,7 +351,6 @@ const Community = () => {
                         </span>
                       </div>
 
-                      {/* Actions */}
                       <div className="mt-auto flex items-center gap-5">
                         <button
                           onClick={(e) => toggleLike(recipe._id, e)}
@@ -412,9 +405,8 @@ const Community = () => {
         )}
       </div>
 
-      {/* ─── Right Sidebar ─── */}
+
       <div className="w-[280px] shrink-0 space-y-6 sticky top-0 h-screen overflow-y-auto no-scrollbar">
-        {/* Top Chefs */}
         <div className="bg-[#111111] border border-zinc-800 rounded-2xl p-5">
           <div className="flex items-center justify-between mb-5">
             <h3 className="font-bold text-white text-base">Top Chefs</h3>
@@ -457,7 +449,6 @@ const Community = () => {
           </div>
         </div>
 
-        {/* Trending This Week */}
         <div className="bg-[#111111] border border-zinc-800 rounded-2xl p-5">
           <div className="flex items-center justify-between mb-5">
             <h3 className="font-bold text-white text-base flex items-center gap-2">
