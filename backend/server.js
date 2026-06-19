@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
  
 app.get("/", (req, res) => {
-  res.send("Tastes-Shit API Running...");
+  res.send("Tastes-Shit App is running successfully!");
 });
  
 const authRoutes = require("./routes/authRoutes");
